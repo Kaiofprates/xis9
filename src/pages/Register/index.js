@@ -3,6 +3,8 @@ import { View } from 'react-native';
 
 import { Card, TextInput } from 'react-native-paper';
 
+import styles from './styles';
+
 export default function Register() {
     return (
         <View style={styles.container}>
