@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
-//import { Icon } from 'react-native-vector-icons/Feather'
 import { Camera } from 'expo-camera';
 import styles from './styles';
 
@@ -9,7 +8,7 @@ import styles from './styles';
 export default function Cam() {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
-
+    const [indicator, setIndicator] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -21,8 +20,11 @@ export default function Cam() {
 
     snap = async () => {
         if (this.camera) {
+            setIndicator(true)
             let photo = await this.camera.takePictureAsync();
-            alert(photo.uri);
+            if (photo.uri) {
+                console.log(photo.uri)
+            }
         }
     }
 
@@ -34,49 +36,52 @@ export default function Cam() {
     }
     return (
         <View style={styles.main}>
-            <Camera style={{ flex: 1 }} type={type} ref={ref => {
+            <View style={styles.flip}>
+                <Button containerStyle={styles.flipButton}
+                    type="outline"
+                    icon={<Icon
+                        name="corner-right-up"
+                        type="feather"
+                        size={20}
+                        color="white"
+                    />
+                    }
+                    onPress={() => {
+                        setType(
+                            type === Camera.Constants.Type.back
+                                ? Camera.Constants.Type.front
+                                : Camera.Constants.Type.back
+                        )
+                    }}
+                    iconRight={false}
+                    title=""
+                />
+            </View>
+            <Camera style={styles.cam} type={type} ref={ref => {
                 this.camera = ref;
             }}>
-                <View
-                    style={{
-                        flex: 1,
-                        backgroundColor: 'transparent',
-                        flexDirection: 'row',
-                    }}>
-
-                    <Button
-                        containerStyle={styles.viewButton}
-                        icon={
-                            <Icon
-                                name="arrow-up-circle"
-                                type="feather"
-                                size={30}
-                                color="white"
-                            />
-                        }
-                        onPress={() => {
-                            setType(
-                                type === Camera.Constants.Type.back
-                                    ? Camera.Constants.Type.front
-                                    : Camera.Constants.Type.back
-                            )
-                        }}
-
-
-
-                        iconRight={false}
-                        title="Flip"
-                    />
-
-                    <TouchableOpacity
-                        style={styles.viewButton}
-                        onPress={() => {
-                            snap();
-                        }}>
-                        <Text style={styles.button}> Take a picture </Text>
-                    </TouchableOpacity>
-                </View>
+                {indicator ? <ActivityIndicator style={styles.indicator} size={80} color="#89AAE6" /> : null}
             </Camera>
+            <View style={styles.take}>
+                <Button
+                    containerStyle={styles.viewButton}
+                    type="outline"
+
+                    icon={
+                        <Icon
+                            name="camera"
+                            type="feather"
+                            size={40}
+                            color="white"
+                        />
+                    }
+                    onPress={() => {
+                        snap();
+                    }}
+                    iconRight={false}
+                    title=""
+                />
+            </View>
         </View>
     );
 }
