@@ -1,10 +1,11 @@
-import React from 'react';
-import Cam from './src/pages/Camera'
+import React from 'react'
+
+import Main from './src/pages/Main';
 
 export default function App() {
   return (
     <>
-      <Cam />
+      <Main />
     </>
   );
 }
