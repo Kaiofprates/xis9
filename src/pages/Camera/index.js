@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Register from '../Register';
 import { Text, View, ActivityIndicator } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import { Camera } from 'expo-camera';
 import styles from './styles';
 
 
-export default function Cam() {
+export default function Cam({ navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [indicator, setIndicator] = useState(false);
@@ -23,7 +24,7 @@ export default function Cam() {
             setIndicator(true)
             let photo = await this.camera.takePictureAsync();
             if (photo.uri) {
-                console.log(photo.uri)
+                navigation.navigate('Register', { uri: photo.uri });
             }
         }
     }

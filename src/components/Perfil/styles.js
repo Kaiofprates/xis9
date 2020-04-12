@@ -4,7 +4,7 @@ const styles = {
     },
     banner: {
         backgroundColor: '#fff',
-        height: 250,
+        height: 300,
         margin: 5,
         width: "100%",
         borderRadius: 5,
@@ -12,7 +12,7 @@ const styles = {
         flexDirection: "column"
     },
     imageBanner: {
-        height: 230,
+        height: 280,
         margin: 3,
     },
     textBanner: {
