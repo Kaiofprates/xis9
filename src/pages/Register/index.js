@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+    useEffect, useState
+} from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import Banner from '../../components/Perfil';
 
@@ -7,14 +9,27 @@ import { Card, TextInput, Button } from 'react-native-paper';
 import styles from './styles';
 
 export default function Register({ navigation, route }) {
+    const [uri, setUri] = useState(null);
 
+    useEffect(() => {
+        getParms()
+    }, [route]);
 
+    function getParms() {
+        try {
+            setUri(route.params.uri);
+
+        } catch (err) {
+            setUri(false)
+        }
+
+    }
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => {
                 navigation.navigate('Cam');
             }}>
-                <Banner url={route.params.uri ? route.params.uri : null} nome={null} />
+                <Banner url={uri ? uri : null} nome={null} />
             </TouchableOpacity>
             <Card>
                 <TextInput underlineColor="#061826" label='Nome' style={{ height: 50 }} />
