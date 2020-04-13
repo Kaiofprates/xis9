@@ -1,25 +1,25 @@
 const styles = {
     container: {
-        margin: 10
+        margin: 7
     },
     banner: {
-        backgroundColor: '#fff',
-        height: 300,
-        margin: 5,
-        width: "100%",
-        borderRadius: 5,
+        backgroundColor: '#E7ECEF',
+        height: 310,
+        borderRadius: 15,
         justifyContent: "center",
         flexDirection: "column"
     },
     imageBanner: {
-        height: 280,
+        height: 300,
+        width: 320,
         margin: 3,
+        borderRadius: 15,
     },
     textBanner: {
         width: 120,
-        margin: 5,
-        textSize: 12,
-        color: "white"
+        color: "indigo",
+        fontSize: 20,
+
     }
 };
 

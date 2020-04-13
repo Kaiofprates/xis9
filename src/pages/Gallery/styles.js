@@ -7,13 +7,29 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: "#0E3859",
+        alignItems: 'center',
+        backgroundColor: "#0F7173",
         padding: 8,
+        textAlign: 'center'
     },
     block: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+    flat: {
+        padding: 9
+    },
+    chip: {
+        width: 300,
+        justifyContent: 'center',
+        textAlign: "center",
+        padding: 5,
+        marginTop: 3
+    },
+    info: {
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
 });

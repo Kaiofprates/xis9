@@ -17,7 +17,7 @@ export default function Banner(props) {
                     <Image source={{ uri: props.url }} style={styles.imageBanner} resizeMode="stretch" />
                 </View>
                 <View>
-                    <Text numberOfLines={2} style={styles.textBanner}>
+                    <Text numberOfLines={2} style={styles.textBanner} >
                         {props.nome}
                     </Text>
                 </View>

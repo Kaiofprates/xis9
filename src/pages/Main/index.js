@@ -3,6 +3,8 @@ import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Register from '../../navigators/regiterNavigator';
+import Gallery from '../Gallery';
+
 
 function HomeScreen({ navigation }) {
     return (
@@ -15,18 +17,18 @@ function HomeScreen({ navigation }) {
     );
 }
 
-function Gallery({ navigation }) {
+// function Gallery({ navigation }) {
 
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                onPress={() => navigation.navigate('Home')}
-                title="Go to Home"
-            />
-        </View>
-    );
+//     return (
+//         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//             <Button
+//                 onPress={() => navigation.navigate('Home')}
+//                 title="Go to Home"
+//             />
+//         </View>
+//     );
 
-}
+// }
 
 
 const Drawer = createDrawerNavigator();

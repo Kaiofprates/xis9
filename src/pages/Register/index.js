@@ -52,7 +52,9 @@ export default function Register({ navigation, route }) {
                 </View>
                 <TextInput underlineColor="#061826" label='Bairro' style={{ height: 50 }} onChangeText={setVillage} />
                 <TextInput underlineColor="#0471A6" keyboardType="numeric" label='Artigo' style={{ height: 50 }} onChangeText={setArticle} />
-                <Button icon="archive" mode="contained" onPress={() => intesertData()}>
+                <Button icon="archive" mode="contained" style={{
+                    backgroundColor: "#0F7189"
+                }} onPress={() => intesertData()}>
                     Cadastrar
                 </Button>
             </Card>
