@@ -23,4 +23,17 @@ function insertDataBase(nome, rua, numero, bairro, artigo, photo) {
     );
 }
 
-module.exports = { insertDataBase };
+function getDataBase() {
+    startDataBase();
+    db.transaction(
+        (tx) => {
+            tx.executeSql("select * from persona", [], (_, { rows }) =>
+                console.log(JSON.stringify(rows))
+            );
+        },
+        null,
+        this.update
+    );
+}
+
+module.exports = { insertDataBase, getDataBase };
