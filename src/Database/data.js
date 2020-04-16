@@ -1,6 +1,6 @@
 import * as SQLite from 'expo-sqlite';
 
-const db = SQLite.openDatabase('./data.db');
+const db = SQLite.openDatabase('./datas.db');
 
 function startDataBase() {
     db.transaction((tx) => {
@@ -22,13 +22,24 @@ function insertDataBase(nome, rua, numero, bairro, artigo, photo) {
         this.update
     );
 }
+function deletData(name) {
+    startDataBase();
+    db.transaction(
+        tx => {
+            tx.executeSql("delete from persona where nome = ?;",
+                [name]);
+        },
+        null,
+        this.update
+    );
+}
 
-function getDataBase() {
+function getDataBase(data) {
     startDataBase();
     db.transaction(
         (tx) => {
-            tx.executeSql("select * from persona", [], (_, { rows }) =>
-                console.log(JSON.stringify(rows))
+            tx.executeSql("select * from persona", [], (_, { rows: { _array } }) =>
+                data({ items: _array })
             );
         },
         null,
@@ -36,4 +47,4 @@ function getDataBase() {
     );
 }
 
-module.exports = { insertDataBase, getDataBase };
+module.exports = { insertDataBase, getDataBase, deletData };
