@@ -47,4 +47,43 @@ function getDataBase(data) {
     );
 }
 
+
+function updateAndress(nome, rua, numero, bairro) {
+
+    if (nome && rua && numero && bairro) {
+        startDataBase();
+        db.transaction(
+            tx => {
+                tx.executeSql("update persona set rua = ?, numero = ? , bairro = ? where nome = ?;",
+                    [rua, numero, bairro, nome])
+            },
+            null,
+            this.update
+        );
+    } else {
+        return null
+    }
+
+}
+
+function updateArticle(article, name) {
+    if (article && name) {
+        startDataBase();
+        db.transaction(
+            tx => {
+                tx.executeSql("update persona set artigo = ? where nome = ?;",
+                    [article, name])
+            },
+            null,
+            this.update
+        );
+
+    } else {
+        return null
+    }
+}
+
+
+
+
 module.exports = { insertDataBase, getDataBase, deletData };
